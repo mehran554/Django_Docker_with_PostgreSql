@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+
+#: .\templates\cart\cart_detail.html:25
+msgid "cart"
+msgstr "سبد خرید"
+
+#: .\templates\cart\cart_detail.html:110
+msgid "Cart To Empty"
+msgstr "خالی کردن سبد خرید"
+
+#: .\templates\cart\cart_detail.html:123
+msgid "total"
+msgstr "مجموع"
+
+#: .\templates\cart\cart_detail.html:139
+msgid "$"
+msgstr "تومان"
+
+#: .\templates\cart\cart_detail.html:150
+msgid "checkout"
+msgstr "پرداخت"
+
+#: .\views.py:33
+msgid "Product Successfully Added To Cart"
+msgstr "محصول با موفقیت به سبد خرید شما اضافه شد "
+
+#: .\views.py:43
+msgid "Product Successfully Deleted From Cart"
+msgstr "محصول با موفقیت از سبد خرید شما حذف گردید"
+
+#: .\views.py:51
+msgid "Your Cart Successfully clear "
+msgstr "سبد خرید با موفقیت خالی شد "
+
+#: .\views.py:53
+msgid "Your Cart Is Already Clear!!!!!"
+msgstr "سبد خرید شما هم اکنون خالیست!!!!!"
+
+#~ msgid "order register"
+#~ msgstr "ثبت سفارش"
