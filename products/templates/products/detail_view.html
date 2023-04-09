@@ -1,0 +1,294 @@
+{% extends '_base.html' %}
+{% block title %}DetailView{% endblock %}
+{% load i18n %}
+{% load  comment_tags %}
+{% load jalali_tags %}
+{% load to_persian_tags %}
+{% load humanize %}
+{% block content %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+    <!-- Breadcrumb area Start -->
+    {% trans 'product_detail' as x %}
+    {% include 'top_header.html' with header_name=x|add:product.title %}
+    <!-- Breadcrumb area End -->
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper">
+        <div class="page-content-inner ptb--80">
+            <div class="container">
+                <div class="row no-gutters mb--80">
+                    <div class="col-12 col-sm-4 product-main-image d-flex align-content-center">
+                        {% if product.image %}
+                            <img class="m-auto" style="max-height: 400px;"
+                                 src="{{ product.image.url }}"
+                                 alt="">
+
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-sm-8 product-main-details mt-md--50">
+                        <div class="product-summary pl-lg--30 pl-md--0 text-right p-4">
+                            <h3 class="product-title mb--20">{{ product.title }}</h3>
+                            <p class="product-short-description mb--20">
+                                {{ product.description|safe }}
+                            </p>
+                            <div class="my-5 py-5 product-price-wrapper mb--25">
+                                <span class="money text-success">{{ product.price|intcomma:False|convert_digit_to_persian }} تومان</span>
+                                <span class="price-separator">-</span>
+                                <span class="money old-price text-danger">{{ product.price|intcomma:False|convert_digit_to_persian }} تومان</span>
+                            </div>
+                            <form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
+                                <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
+                                    <div class="quantity-wrapper d-flex justify-content-start">
+                                        {#                                    <div class="quantity">#}
+                                        {#                                        <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
+                                        {#                                               min="1">#}
+                                        {#                                    </div>#}
+                                    </div>
+
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn btn-small btn-bg-red btn-color-white btn-hover-2">
+                                        {% translate "add to card" %}
+                                    </button>
+                                    <div class="quantity">
+                                        <input type="number" class="quantity-input" name="quantity" id="qty" value="1"
+                                               min="1">
+                                    </div>
+                            </form>
+                            {#                                <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
+                            {#                                        onclick="window.location.href='cart.html'">#}
+                            {#                                   {% translate "add to card" %}#}
+                            {#                                </button>#}
+                        </div>
+                        <div class="product-footer-meta mt-5 pt-5">
+                            <p><span class="m-0">دسته بندی ها:</span>
+                                <a href="shop.html">لباس</a>,
+                                <a href="shop.html">تابستانی</a>,
+                                <a href="shop.html">گرم</a>,
+                                <a href="shop.html">زنانه</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if messages %}
+                <div class="container">
+                    {% for message in messages %}
+
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% endif %}
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="product-data-tab tab-style-3">
+                        <div class="nav nav-tabs product-data-tab__head" id="product-tab" role="tablist">
+                            <a class="m-0 product-data-tab__link nav-link active" id="nav-description-tab"
+                               data-toggle="tab" href="#nav-description" role="tab" aria-selected="true">
+                                <span>{% trans 'Product Desciption' %}</span>
+                            </a>
+                            <a class="m-0 product-data-tab__link nav-link" id="nav-info-tab" data-toggle="tab"
+                               href="#nav-info" role="tab" aria-selected="true">
+                                <span>ویژگی ها</span>
+                            </a>
+                            <a class="m-0 product-data-tab__link nav-link" id="nav-reviews-tab" data-toggle="tab"
+                               href="#nav-reviews" role="tab" aria-selected="true">
+                                <span>{% trans 'Comments' %} ({{ product.comments.all|only_active_comment_show|length }})</span>
+                            </a>
+                        </div>
+                        <div class="tab-content product-data-tab__content" id="product-tabContent">
+                            <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
+                                 aria-labelledby="nav-description-tab">
+                                <div class="product-description text-justify">
+                                    <p>
+                                        {{ product.description }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tab-pane text-right" id="nav-info" role="tabpanel"
+                                 aria-labelledby="nav-info-tab">
+                                <div class="table-content table-responsive">
+                                    <table class="table shop_attributes">
+                                        <tbody>
+                                        <tr>
+                                            <th>وزن</th>
+                                            <td>۴۳۰ گرم</td>
+                                        </tr>
+                                        <tr>
+                                            <th>سایز</th>
+                                            <td>XL</td>
+                                        </tr>
+                                        <tr>
+                                            <th>رنگ</th>
+                                            <td>
+                                                <a href="shop-sidebar.html">مشکی</a>,
+                                                <a href="shop-sidebar.html">سبز</a>,
+                                                <a href="shop-sidebar.html">قرمز</a>,
+                                                <a href="shop-sidebar.html">نارنجی</a>,
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-reviews" role="tabpanel"
+                                 aria-labelledby="nav-reviews-tab">
+                                <div class="product-reviews">
+                                    <h3 class="review__title">{{ product.comments.all|only_active_comment_show|length }}
+                                        نظر برای {{ product.title }}</h3>
+                                    {% for comment in product.comments.all|only_active_comment_show %}
+                                        <ul class="review__list">
+                                            <li class="review__item">
+                                                <div class="review__container">
+                                                    <div class="review__text">
+                                                        <div class="d-flex flex-sm-row flex-row">
+                                                            <img src="{% static '/img/others/comment-1.jpg' %}"
+                                                                 alt="Review Avatar" class="review__avatar p-2">
+                                                            <div>
+                                                                <div class="review__meta" dir="ltr">
+                                                                    <span class="review__published-date">{{ comment.datetime_create|to_jalali:'%Y/%m/%d _ %H:%M:%S'|convert_digit_to_persian }}</span>
+                                                                    <span class="review__dash">-</span>
+                                                                    <strong class="review__author px-4">{{ comment.author }}  </strong>
+                                                                </div>
+                                                                <div class="product-rating">
+                                                                    <div class="m-0 star-rating star-five">
+                                                                        <span>Rated <strong
+                                                                                class="rating">{{ comment.stars }}</strong> out of 5</span>
+                                                                    </div>
+                                                                    {#                                                                    {{ comment.stars }}#}
+                                                                </div>
+                                                                <p class="review__description text-right px-4 pt-2">
+
+                                                                    {{ comment.body.as_p }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
+
+
+
+                                    <div class="review-form-wrapper">
+                                        <div class="row">
+
+                                            <div class="border-top py-5 w-100"></div>
+                                            <div class="col-lg-8 m-auto">
+                                                <span class="reply-title pull-right">نظر خود را بنویسید</span>
+                                                <br>
+                                                <form action="{% url 'comment_create' product.id %}" method="POST">
+                                                    {% csrf_token %}
+                                                    {{ comment_form.media }}   {#  جهت لود شدن فرم به صورت ریچ تکست فیلد#}
+                                                    {{ comment_form }}
+
+                                                    <input type="submit" value="ارسال">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    <!-- Main Content Wrapper End -->
+
+    <!-- Footer Start-->
+    <footer class="footer">
+
+        <div class="footer-top bg-color ptb--50" data-bg-color="#f6f6f6">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 text-center">
+                        <div class="footer-widget mb--50">
+                            <div class="textwidget">
+                                <img src="assets/img/codingyar_logo.png" alt="Logo">
+                            </div>
+                        </div>
+                        <div class="footer-widget mb--50 pb--1">
+                            <ul class="footer-menu">
+                                <li><a href="">درباره ما</a></li>
+                                <li><a href="">قوانین و مقررات</a></li>
+                                <li><a href="">تماس با ما</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-widget">
+                            Codingyar.com © | all rights reserved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End-->
+
+    <!-- Search form Popup Start -->
+    <div class="searchform__popup" id="searchForm">
+        <a href="#" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
+        <div class="searchform__body">
+            <p>Start typing and press Enter to search</p>
+            <form class="searchform">
+                <input type="text" name="popup-search" id="popup-search" class="searchform__input"
+                       placeholder="Search Entire Store...">
+                <button type="submit" class="searchform__submit"><i class="flaticon flaticon-magnifying-glass-icon"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Search form Popup End -->
+    <!-- Mini Cart Start -->
+
+    {% include 'cart_sidebar.html' %}
+    <!-- Mini Cart End -->
+    <!-- Global Overlay Start -->
+    <div class="ShoppingYar-global-overlay"></div>
+    <!-- Global Overlay End -->
+
+
+    <!-- Qicuk View Modal End -->
+    </div>
+    <!-- Main Wrapper End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {##}
+    {#        <h1>{{ product.title }}</h1>#}
+    {#        <p>{{ product.description }}</p>#}
+    {#         <p>{{ product.price }}</p>#}
+
+
+
+{% endblock %}

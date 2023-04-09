@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block title %}logout{% endblock %}
+{% block content %}
+ <h1>logout</h1>
+<h4>Are You Sure To Logout??</h4>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Are You Sure?">
+</form>
+{% endblock %}

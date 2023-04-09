@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.10'
 
 services:
   web:
@@ -8,8 +8,12 @@ services:
       - .:/code
     ports:
       - 8000:8000
+    environment:
+      - 'DJANGO_SECRET_KEY=django-insecure-b764$#(&o4o((cvy!z^nsseq5@erq#e^0%5r5a(%c24*f^*sde'
 
   db:
     image: postgres:14
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+

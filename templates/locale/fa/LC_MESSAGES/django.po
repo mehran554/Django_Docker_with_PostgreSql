@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-04 09:40+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\account\email\email_confirmation_message.txt:8
+#, python-format
+msgid ""
+"\n"
+"\n"
+"    Hi from %(site_name)s!\n"
+"    You are receiving this e-mail because user %(user_display)s has given "
+"yours as an e-mail address to connect their account.\n"
+"    To confirm this is correct, go to %(activate_url)s\n"
+"\n"
+"    "
+msgstr ""
+
+#: .\account\email\email_confirmation_message.txt:16
+#, python-format
+msgid ""
+"\n"
+"    Thank you from %(site_name)s!\n"
+"    %(site_domain)s\n"
+"\n"
+"    "
+msgstr ""
+
+#: .\account\email\email_confirmation_subject.txt:3
+msgid "Please Confirm Your E-mail Address or do whatever.."
+msgstr ""
+
+#: .\account\email_confirm.html:6 .\account\email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr ""
+
+#: .\account\email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that\n"
+"            <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail address "
+"for user %(user_display)s\n"
+"            ."
+msgstr ""
+
+#: .\account\email_confirm.html:22
+msgid "Confirm"
+msgstr ""
+
+#: .\account\email_confirm.html:29
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please\n"
+"            <a href=\"%(email_url)s\">issue a new e-mail confirmation "
+"request</a>."
+msgstr ""
+
+#: .\cart_sidebar.html:8 .\cart_sidebar.html:43
+msgid "cart"
+msgstr "سبد خرید"
+
+#: .\cart_sidebar.html:30 .\cart_sidebar.html:39
+msgid "$"
+msgstr "تومان"
+
+#: .\cart_sidebar.html:38
+msgid "sum"
+msgstr "جمع کل"
+
+#: .\cart_sidebar.html:46
+msgid "checkout"
+msgstr "پرداخت"
+
+#~ msgid "Total"
+#~ msgstr "جمع کل"
